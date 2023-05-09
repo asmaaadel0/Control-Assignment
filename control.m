@@ -69,20 +69,22 @@ figure();
 
 % We already plot step responses for two transfer functions and 
 % then we calculate the steady state values of these signals. 
+[y,t]=step(tf(2));
 
 info = stepinfo(tf(2));
 RiseTime = info.RiseTime
 PeakTime = info.PeakTime
 MaxPeak = info.Peak
 SettlingTime = info.SettlingTime
-ess = abs(1 - info.SettlingMin)
+ess = abs(1 - y(end))
 
+[y,t]=step(tf(1));
 info = stepinfo(tf(1));
 RiseTime = info.RiseTime
 PeakTime = info.PeakTime
 MaxPeak = info.Peak
 SettlingTime = info.SettlingTime
-ess = abs(1 - info.SettlingMin)
+ess = abs(1 - y(end))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 5. Suggest a modification to the system such that...
@@ -155,6 +157,7 @@ for i = 1:4
     sys3 = connect( B12,connect_map2,input_loc2 ,output_loc2)
     p3 = stepplot (input*sys3)
     setoptions(p3,'RiseTimeLimits' ,[0,1])
+    [y,t]=step(input*sys3); 
     
     tf3 = tf(input*sys3)
     figure();
@@ -164,7 +167,6 @@ for i = 1:4
     figure();
 
     info3 = stepinfo(input*sys3);
-    [y,t]=step(input*sys3); 
     
     RiseTimeArr(i) = info3.RiseTime
     PeakTimeArr(i) = info3.PeakTime

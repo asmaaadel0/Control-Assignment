@@ -89,7 +89,6 @@ ess = abs(1 - y(end))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 5. Suggest a modification to the system such that...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% later we want to change B11 to tf(2)
 
 clear;
 B11 = tf(0.005, [1 ,2 ,2.1 ,1.1 ,0.0525])
